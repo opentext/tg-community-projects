@@ -1,0 +1,2039 @@
+{
+	"info": {
+		"_postman_id": "1bfc980b-6ada-45ec-9318-057c950a38c6",
+		"name": "Trading Grid Community Projects - External APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "APIGEE AUTH API",
+			"item": [
+				{
+					"name": "GENERATE ACCESS TOKEN - APIGEE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonToken = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"accessToken\", jsonToken.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{APIGEE_Password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{APIGEE_Username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{api_host}}/v1/oauth2/tokens?grant_type=client_credentials",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"v1",
+								"oauth2",
+								"tokens"
+							],
+							"query": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TGCP External APIs",
+			"item": [
+				{
+					"name": "Trading Partner New",
+					"item": [
+						{
+							"name": "Request Creation - TP New - ANSI_X12",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | TP New | {{todayDate}}\",\r\n    \"usersToNotify\": \"user1@example.com;user2@example.com\",\r\n    \"requestNotes\": \"string\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"Ext API | TP New WO - ANSI | {{todayDate}}\",\r\n            \"workOrderType\": \"Trading Partner - New\",\r\n            \"connectivityType\": \"AS2\",\r\n            \"tpCompanyName\": \"TP API Company\",\r\n            \"prodContactEmailAddress\": \"test@test.test\",\r\n            \"prodContactFirstName\": \"API_FN\",\r\n            \"prodContactLastName\": \"API_LN\",\r\n            \"prodContactPhoneNumber\": \"11111\",\r\n            \"isProdTestDetailsSame\": false,\r\n            \"testContactEmailAddress\": \"test1@test.test\",\r\n            \"testContactFirstName\": \"API_FN1\",\r\n            \"testContactLastName\": \"API_LN1\",\r\n            \"testContactPhoneNumber\": \"22222\",\r\n            \"addressLineOne\": \"TestAddrss1\",\r\n            \"addressLineTwo\": \"TestAddrss2\",\r\n            \"city\": \"TestCity\",\r\n            \"postalCode\": \"1234\",\r\n            \"state\": \"TestState\",\r\n            \"country\": \"IN\",\r\n            \"notes\": \"Externalizing API - Testing in QA - TP New WO Type\",\r\n            \"additionalServices\": [\"ACTIVE_INTELLIGENCE\",\"ACTIVE_INVOICE_COMPLIANCE\",\"CARBON_COPY\"],\r\n            \"abc\":\"abc\",\r\n            \"efg\": \"efg\",\r\n            \"ediStandardDetails\": [\r\n                {\r\n                    \"standardType\": \"ANSI_X12\",\r\n                    \"yourISAId\": \"yourISAId\",\r\n                    \"yourISAQualifier\": \"AB\",\r\n                    \"yourProdGSId\": \"yourProdGSId\",\r\n                    \"tpISAId\": \"tpISAId\",\r\n                    \"tpISAQualifier\": \"CD\",\r\n                    \"tpProdGSId\": \"tpProdGSId\",\r\n                    \"yourTestISAQualifier\": \"EF\",\r\n                    \"yourTestISAId\": \"yourTestISAId\",\r\n                    \"yourTestGSId\": \"yourTestGSId\",\r\n                    \"tpTestGSId\": \"tpTestGSId\",\r\n                    \"tpTestISAId\": \"tpTestISAId\",\r\n                    \"tpTestISAIndicator\": false,\r\n                    \"tpTestISAQualifier\": \"GH\",\r\n                    \"requireFA\": true,\r\n                    \"elementSeparator\": \"FOUR\",\r\n                    \"segmentTerminator\": \"DEFAULT\",\r\n                    \"subElementSeparator\": \"DOLLAR\",\r\n                    \"yourTestISAIndicator\": false,\r\n                    \"selectedMaps\": [\r\n                        {\r\n                            \"documentType\": \"Test ANSI_X12 Map\",\r\n                            \"map\": \"ANSI_X12 Map Name\",\r\n                            \"direction\": \"INBOUND\"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Creation - TP New - EDIFACT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | TP New | {{todayDate}}\",\r\n    \"usersToNotify\": \"user1@example.com;user2@example.com\",\r\n    \"requestNotes\": \"string\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"Ext API | TP New WO - EDIFACT | {{todayDate}}\",\r\n            \"workOrderType\": \"Trading Partner - New\",\r\n            \"connectivityType\": \"AS2\",\r\n            \"tpCompanyName\": \"TP API Company\",\r\n            \"prodContactEmailAddress\": \"test@test.test\",\r\n            \"prodContactFirstName\": \"API_FN\",\r\n            \"prodContactLastName\": \"API_LN\",\r\n            \"prodContactPhoneNumber\": \"11111\",\r\n            \"isProdTestDetailsSame\": false,\r\n            \"testContactEmailAddress\": \"test1@test.test\",\r\n            \"testContactFirstName\": \"API_FN1\",\r\n            \"testContactLastName\": \"API_LN1\",\r\n            \"testContactPhoneNumber\": \"22222\",\r\n            \"addressLineOne\": \"TestAddrss1\",\r\n            \"addressLineTwo\": \"TestAddrss2\",\r\n            \"city\": \"TestCity\",\r\n            \"postalCode\": \"1234\",\r\n            \"state\": \"TestState\",\r\n            \"country\": \"IN\",\r\n            \"notes\": \"STRING\",\r\n            \"additionalServices\": [\"ACTIVE_INTELLIGENCE\",\"ACTIVE_INVOICE_COMPLIANCE\",\"CARBON_COPY\"],\r\n            \"abc\":\"abc\",\r\n            \"efg\": \"efg\",\r\n            \"ediStandardDetails\": [\r\n                {\r\n                    \"standardType\": \"EDIFACT\",\r\n                    \"yourUNBId\": \"string\",\r\n                    \"yourUNBQualifier\": \"1234\",\r\n                    \"yourRoutingAddress\": \"string\",\r\n                    \"yourUNGId\": \"string\",\r\n                    \"tpUNBId\": \"string\",\r\n                    \"tpUNBQualifier\": \"1234\",\r\n                    \"tpRoutingAddress\": \"string\",\r\n                    \"tpUNGId\": \"string\",\r\n                    \"yourTestUNBId\": \"string\",\r\n                    \"yourTestUNBQualifier\": \"string\",\r\n                    \"yourTestRoutingAddress\": \"string\",\r\n                    \"yourTestUNGId\": \"string\",\r\n                    \"tpTestUNBId\": \"string\",\r\n                    \"tpTestUNBQualifier\": \"string\",\r\n                    \"tpTestRoutingAddress\": \"string\",\r\n                    \"tpTestUNGId\": \"string\",\r\n                    \"tpSyntaxId\": \"string\",\r\n                    \"tpSyntaxVersion\": \"string\",\r\n                    \"componentElementSeparator\": \"ENQUIRY\",\r\n                    \"decimalNotation\": \"ENQUIRY\",\r\n                    \"elementSeparator\": \"ENQUIRY\",\r\n                    \"releaseIndicator\": \"ENQUIRY\",\r\n                    \"segmentTerminator\": \"ENQUIRY\",\r\n                    \"yourUNBTestIndicator\": true,\r\n                    \"tpUNBTestIndicator\": true,\r\n                    \"faRequired\": true,\r\n                    \"unaRequired\": true,\r\n                    \"selectedMaps\": [\r\n                        {\r\n                            \"documentType\": \"string\",\r\n                            \"map\": \"string\",\r\n                            \"direction\": \"OUTBOUND\"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Creation - TP New - TRADACOMS",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | TP New | {{todayDate}}\",\r\n    \"usersToNotify\": \"user1@example.com;user2@example.com\",\r\n    \"requestNotes\": \"string\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"Ext API | TP New WO - TRADACOMS | {{todayDate}}\",\r\n            \"workOrderType\": \"Trading Partner - New\",\r\n            \"connectivityType\": \"AS2\",\r\n            \"tpCompanyName\": \"TP API Company\",\r\n            \"prodContactEmailAddress\": \"test@test.test\",\r\n            \"prodContactFirstName\": \"API_FN\",\r\n            \"prodContactLastName\": \"API_LN\",\r\n            \"prodContactPhoneNumber\": \"11111\",\r\n            \"isProdTestDetailsSame\": false,\r\n            \"testContactEmailAddress\": \"test1@test.test\",\r\n            \"testContactFirstName\": \"API_FN1\",\r\n            \"testContactLastName\": \"API_LN1\",\r\n            \"testContactPhoneNumber\": \"22222\",\r\n            \"addressLineOne\": \"TestAddrss1\",\r\n            \"addressLineTwo\": \"TestAddrss2\",\r\n            \"city\": \"TestCity\",\r\n            \"postalCode\": \"1234\",\r\n            \"state\": \"TestState\",\r\n            \"country\": \"IN\",\r\n            \"notes\": \"STRING\",\r\n            \"additionalServices\": [\"ACTIVE_INTELLIGENCE\",\"ACTIVE_INVOICE_COMPLIANCE\",\"CARBON_COPY\"],\r\n            \"abc\":\"abc\",\r\n            \"efg\": \"efg\",\r\n            \"ediStandardDetails\": [\r\n                {\r\n                    \"standardType\": \"TRADACOMS\",\r\n                    \"messageAcknowledgement\": true,\r\n                    \"tpEDIAddress\": \"string\",\r\n                    \"tpEDIName\": \"string\",\r\n                    \"tpTestEDIAddress\": \"string\",\r\n                    \"tpTestEDIName\": \"string\",\r\n                    \"yourEDIAddress\": \"string\",\r\n                    \"yourEDIName\": \"string\",\r\n                    \"yourTestEDIAddress\": \"string\",\r\n                    \"yourTestEDIName\": \"string\",\r\n                    \"tpEDIAddressTestIndicator\": true,\r\n                    \"yourEDIAddressTestIndicator\": true,\r\n                    \"selectedMaps\": [\r\n                        {\r\n                            \"documentType\": \"string\",\r\n                            \"map\": \"string\",\r\n                            \"direction\": \"OUTBOUND\"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Creation - TP New - VDA",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | TP New | {{todayDate}}\",\r\n    \"usersToNotify\": \"user1@example.com;user2@example.com\",\r\n    \"requestNotes\": \"string\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"Ext API | TP New WO - VDA | {{todayDate}}\",\r\n            \"workOrderType\": \"Trading Partner - New\",\r\n            \"connectivityType\": \"AS2\",\r\n            \"tpCompanyName\": \"TP API Company\",\r\n            \"prodContactEmailAddress\": \"test@test.test\",\r\n            \"prodContactFirstName\": \"API_FN\",\r\n            \"prodContactLastName\": \"API_LN\",\r\n            \"prodContactPhoneNumber\": \"11111\",\r\n            \"isProdTestDetailsSame\": false,\r\n            \"testContactEmailAddress\": \"test1@test.test\",\r\n            \"testContactFirstName\": \"API_FN1\",\r\n            \"testContactLastName\": \"API_LN1\",\r\n            \"testContactPhoneNumber\": \"22222\",\r\n            \"addressLineOne\": \"TestAddrss1\",\r\n            \"addressLineTwo\": \"TestAddrss2\",\r\n            \"city\": \"TestCity\",\r\n            \"postalCode\": \"1234\",\r\n            \"state\": \"TestState\",\r\n            \"country\": \"IN\",\r\n            \"notes\": \"STRING\",\r\n            \"additionalServices\": [\"ACTIVE_INTELLIGENCE\",\"ACTIVE_INVOICE_COMPLIANCE\",\"CARBON_COPY\"],\r\n            \"abc\":\"abc\",\r\n            \"efg\": \"efg\",\r\n            \"ediStandardDetails\": [\r\n                {\r\n                    \"standardType\": \"VDA\",\r\n                    \"tpEDIAddress\": \"string\",\r\n                    \"tpTestEDIAddress\": \"string\",\r\n                    \"yourEDIAddress\": \"string\",\r\n                    \"yourTestEDIAddress\": \"string\",\r\n                    \"selectedMaps\": [\r\n                        {\r\n                            \"documentType\": \"string\",\r\n                            \"map\": \"string\",\r\n                            \"direction\": \"OUTBOUND\"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Creation - TP New - UDF/OTHER",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | TP New | {{todayDate}}\",\r\n    \"usersToNotify\": \"user1@example.com;user2@example.com\",\r\n    \"requestNotes\": \"string\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"Ext API | TP New WO - UDF/OTHER | {{todayDate}}\",\r\n            \"workOrderType\": \"Trading Partner - New\",\r\n            \"connectivityType\": \"AS2\",\r\n            \"tpCompanyName\": \"TP API Company\",\r\n            \"prodContactEmailAddress\": \"test@test.test\",\r\n            \"prodContactFirstName\": \"API_FN\",\r\n            \"prodContactLastName\": \"API_LN\",\r\n            \"prodContactPhoneNumber\": \"11111\",\r\n            \"isProdTestDetailsSame\": false,\r\n            \"testContactEmailAddress\": \"test1@test.test\",\r\n            \"testContactFirstName\": \"API_FN1\",\r\n            \"testContactLastName\": \"API_LN1\",\r\n            \"testContactPhoneNumber\": \"22222\",\r\n            \"addressLineOne\": \"TestAddrss1\",\r\n            \"addressLineTwo\": \"TestAddrss2\",\r\n            \"city\": \"TestCity\",\r\n            \"postalCode\": \"1234\",\r\n            \"state\": \"TestState\",\r\n            \"country\": \"IN\",\r\n            \"notes\": \"STRING\",\r\n            \"additionalServices\": [\"ACTIVE_INTELLIGENCE\",\"ACTIVE_INVOICE_COMPLIANCE\",\"CARBON_COPY\"],\r\n            \"abc\":\"abc\",\r\n            \"efg\": \"efg\",\r\n            \"ediStandardDetails\": [\r\n                {\r\n                    \"standardType\": \"OTHER\",\r\n                    \"yourAddress\": \"string\",\r\n                    \"tpAddress\": \"string\",\r\n                    \"selectedMaps\": [\r\n                        {\r\n                            \"documentType\": \"string\",\r\n                            \"map\": \"string\",\r\n                            \"direction\": \"INBOUND\"\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Trading Partner Change",
+					"item": [
+						{
+							"name": "Request Creation - TP Change - ANSI_X12",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | TP Change | {{todayDate}}\",\r\n    \"usersToNotify\": \"user1@example.com;user2@example.com\",\r\n    \"requestNotes\": \"string\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"tp Change - Ansi X12\",\r\n            \"workOrderType\": \"Trading Partner - Change\",\r\n            \"workOrderPriority\": 1,\r\n            \"tpCompanyName\": \"string\",\r\n            \"standardType\": \"ANSI_X12\",\r\n            \"notes\": \"string\",\r\n            \"yourISAId\": \"string\",\r\n            \"yourISAQualifier\": \"string\",\r\n            \"yourProdGSId\": \"string\",\r\n            \"tpISAId\": \"string\",\r\n            \"tpISAQualifier\": \"string\",\r\n            \"tpProdGSId\": \"string\",\r\n            \"yourTestISAQualifier\": \"string\",\r\n            \"yourTestISAId\": \"string\",\r\n            \"tpTestGSId\": \"string\",\r\n            \"tpTestISAId\": \"string\",\r\n            \"yourTestGSId\": \"string\",\r\n            \"tpTestISAQualifier\": \"string\",\r\n            \"tpTestISAIndicator\": true,\r\n            \"requireFA\": true,\r\n            \"segmentTerminator\": \"string\",\r\n            \"elementSeparator\": \"string\",\r\n            \"subElementSeparator\": \"string\",\r\n            \"yourTestISAIndicator\": true,\r\n            \"href\": null\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Creation - TP Change - EDIFACT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | TP Change | {{todayDate}}\",\r\n    \"usersToNotify\": \"user1@example.com;user2@example.com\",\r\n    \"requestNotes\": \"string\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"tp change - Edifact\",\r\n            \"workOrderPriority\": 1,\r\n            \"tpCompanyName\": \"string\",\r\n            \"standardType\": \"EDIFACT\",\r\n            \"notes\": \"string\",\r\n            \"yourUNBId\": \"string\",\r\n            \"yourUNBQualifier\": \"string\",\r\n            \"yourRoutingAddress\": \"string\",\r\n            \"yourUNGId\": \"string\",\r\n            \"tpUNBId\": \"string\",\r\n            \"tpUNBQualifier\": \"string\",\r\n            \"tpRoutingAddress\": \"string\",\r\n            \"tpUNGId\": \"string\",\r\n            \"yourTestUNBId\": \"string\",\r\n            \"yourTestUNBQualifier\": \"string\",\r\n            \"yourTestRoutingAddress\": \"string\",\r\n            \"yourTestUNGId\": \"string\",\r\n            \"tpTestUNBId\": \"string\",\r\n            \"tpTestUNBQualifier\": \"string\",\r\n            \"tpTestRoutingAddress\": \"string\",\r\n            \"tpTestUNGId\": \"string\",\r\n            \"tpSyntaxId\": \"string\",\r\n            \"tpSyntaxVersion\": \"string\",\r\n            \"componentElementSeparator\": \"string\",\r\n            \"decimalNotation\": \"string\",\r\n            \"elementSeparator\": \"string\",\r\n            \"releaseIndicator\": \"string\",\r\n            \"segmentTerminator\": \"string\",\r\n            \"yourUNBTestIndicator\": true,\r\n            \"tpUNBTestIndicator\": true,\r\n            \"faRequired\": true,\r\n            \"unaRequired\": true,\r\n            \"href\": null,\r\n            \"workOrderType\": \"Trading Partner - Change\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Creation - TP Change - TRADACOMS",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | TP Change | {{todayDate}}\",\r\n    \"usersToNotify\": \"user1@example.com;user2@example.com\",\r\n    \"requestNotes\": \"string\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"tp change - Tradacoms\",\r\n            \"workOrderPriority\": 1,\r\n            \"tpCompanyName\": \"string\",\r\n            \"standardType\": \"TRADACOMS\",\r\n            \"notes\": \"string\",\r\n            \"messageAcknowledgement\": true,\r\n            \"tpEDIAddress\": \"string\",\r\n            \"tpEDIName\": \"string\",\r\n            \"tpTestEDIAddress\": \"string\",\r\n            \"tpTestEDIName\": \"string\",\r\n            \"yourEDIAddress\": \"string\",\r\n            \"yourEDIName\": \"string\",\r\n            \"yourTestEDIAddress\": \"string\",\r\n            \"yourTestEDIName\": \"string\",\r\n            \"tpEDIAddressTestIndicator\": true,\r\n            \"yourEDIAddressTestIndicator\": true,\r\n            \"href\": null,\r\n            \"workOrderType\": \"Trading Partner - Change\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Creation - TP Change - VDA",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | TP Change | {{todayDate}}\",\r\n    \"usersToNotify\": \"user1@example.com;user2@example.com\",\r\n    \"requestNotes\": \"string\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"tp change - VDA\",\r\n            \"workOrderPriority\": 1,\r\n            \"tpCompanyName\": \"string\",\r\n            \"standardType\": \"VDA\",\r\n            \"notes\": \"string\",\r\n            \"tpEDIAddress\": \"string\",\r\n            \"tpTestEDIAddress\": \"string\",\r\n            \"yourEDIAddress\": \"string\",\r\n            \"yourTestEDIAddress\": \"string\",\r\n            \"href\": null,\r\n            \"workOrderType\": \"Trading Partner - Change\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Creation - TP Change - UDF/OTHER",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | TP Change | {{todayDate}}\",\r\n    \"usersToNotify\": \"user1@example.com;user2@example.com\",\r\n    \"requestNotes\": \"string\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"tp change - other\",\r\n            \"workOrderPriority\": 1,\r\n            \"tpCompanyName\": \"string\",\r\n            \"standardType\": \"OTHER\",\r\n            \"notes\": \"string\",\r\n            \"yourAddress\": \"string\",\r\n            \"tpAddress\": \"string\",\r\n            \"href\": null,\r\n            \"workOrderType\": \"Trading Partner - Change\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Map New",
+					"item": [
+						{
+							"name": "Request Creation - Map New - ANSI_X12",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | Map New | {{todayDate}}\",\r\n    \"usersToNotify\": \"user1@example.com;user2@example.com\",\r\n    \"requestNotes\": \"string\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"map new - Ansi X12\",\r\n            \"workOrderPriority\": 1,\r\n            \"standardType\": \"ANSI_X12\",\r\n            \"documentDirection\": \"outbound\",\r\n            \"documentType\": \"string\",\r\n            \"documentVersion\": \"123\",\r\n            \"applicationIdentifier\": \"string\",\r\n            \"customerMappingNotes\": \"string\",\r\n            \"workOrderType\": \"Map - New\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Creation - Map New - EDIFACT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | Map New | {{todayDate}}\",\r\n    \"usersToNotify\": \"user1@example.com;user2@example.com\",\r\n    \"requestNotes\": \"string\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"map new - Edifact\",\r\n            \"workOrderPriority\": 1,\r\n            \"standardType\": \"EDIFACT\",\r\n            \"documentDirection\": \"outbound\",\r\n            \"applicationIdentifier\": \"string\",\r\n            \"documentType\": \"string\",\r\n            \"documentVersion\": \"string\",\r\n            \"documentRelease\": \"string\",\r\n            \"communicationAgreementId\": \"string\",\r\n            \"controllingAgency\": \"string\",\r\n            \"associationAssignedCode\": \"string\",\r\n            \"applicationReference\": \"string\",\r\n            \"customerMappingNotes\": \"string\",\r\n            \"workOrderType\": \"Map - New\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Creation - Map New - TRADACOMS",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | Map New | {{todayDate}}\",\r\n    \"usersToNotify\": \"user1@example.com;user2@example.com\",\r\n    \"requestNotes\": \"string\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"map new - Tradacoms\",\r\n            \"workOrderPriority\": 1,\r\n            \"standardType\": \"TRADACOMS\",\r\n            \"documentDirection\": \"inbound\",\r\n            \"applicationIdentifier\": \"string\",\r\n            \"applicationReference\": \"string\",\r\n            \"anaVersionNumber\": \"string\",\r\n            \"mhdDocType1\": \"string\",\r\n            \"mhdVersion1\": \"string\",\r\n            \"mhdDocType2\": \"string\",\r\n            \"mhdVersion2\": \"string\",\r\n            \"mhdDocType3\": \"string\",\r\n            \"mhdVersion3\": \"string\",\r\n            \"mhdDocType4\": \"string\",\r\n            \"mhdVersion4\": \"string\",\r\n            \"anaSyntaxId\": \"string\",\r\n            \"customerMappingNotes\": \"string\",\r\n            \"workOrderType\": \"Map - New\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Creation - Map New - VDA",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | Map New | {{todayDate}}\",\r\n    \"usersToNotify\": \"user1@example.com;user2@example.com\",\r\n    \"requestNotes\": \"string\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"map new - VDA\",\r\n            \"workOrderPriority\": 1,\r\n            \"standardType\": \"VDA\",\r\n            \"documentDirection\": \"inbound\",\r\n            \"applicationIdentifier\": \"string\",\r\n            \"documentType\": \"string\",\r\n            \"companyCode\": \"string\",\r\n            \"companyName\": \"string\",\r\n            \"customerMappingNotes\": \"string\",\r\n            \"workOrderType\": \"Map - New\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Creation - Map New - UDF/OTHER",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | Map New | {{todayDate}}\",\r\n    \"usersToNotify\": \"user1@example.com;user2@example.com\",\r\n    \"requestNotes\": \"string\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"map new - other\",\r\n            \"workOrderPriority\": 1,\r\n            \"standardType\": \"OTHER\",\r\n            \"documentDirection\": \"outbound\",\r\n            \"documentType\": \"string\",\r\n            \"applicationIdentifier\": \"string\",\r\n            \"customerMappingNotes\": \"string\",\r\n            \"workOrderType\": \"Map - New\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Map Change",
+					"item": [
+						{
+							"name": "Request Creation - Map Change - ANSI_X12",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | Map Change | {{todayDate}}\",\r\n    \"usersToNotify\": \"user1@example.com;user2@example.com\",\r\n    \"requestNotes\": \"string\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"map change - Ansi X12\",\r\n            \"workOrderType\": \"Map - Change\",\r\n            \"workOrderPriority\": 1,\r\n            \"standardType\": \"ANSI_X12\",\r\n            \"documentDirection\": \"inbound\",\r\n            \"documentType\": \"string\",\r\n            \"documentVersion\": \"string\",\r\n            \"applicationIdentifier\": \"string\",\r\n            \"customerMappingNotes\": \"string\",\r\n            \"map\": \"string\",\r\n            \"href\": null\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Creation - Map Change - EDIFACT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | Map Change | {{todayDate}}\",\r\n    \"usersToNotify\": \"user1@example.com;user2@example.com\",\r\n    \"requestNotes\": \"string\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"map change - Edifact\",\r\n            \"workOrderType\": \"Map - Change\",\r\n            \"workOrderPriority\": 1,\r\n            \"standardType\": \"EDIFACT\",\r\n            \"documentDirection\": \"inbound\",\r\n            \"applicationIdentifier\": \"string\",\r\n            \"documentType\": \"string\",\r\n            \"documentVersion\": \"string\",\r\n            \"documentRelease\": \"string\",\r\n            \"communicationAgreementId\": \"string\",\r\n            \"controllingAgency\": \"string\",\r\n            \"associationAssignedCode\": \"string\",\r\n            \"applicationReference\": \"string\",\r\n            \"customerMappingNotes\": \"string\",\r\n            \"map\": \"string\",\r\n            \"href\": null\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Creation - Map Change - TRADACOMS",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | Map Change | {{todayDate}}\",\r\n    \"usersToNotify\": \"user1@example.com;user2@example.com\",\r\n    \"requestNotes\": \"string\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"map change - Tradacoms\",\r\n            \"workOrderPriority\": 1,\r\n            \"standardType\": \"TRADACOMS\",\r\n            \"documentDirection\": \"inbound\",\r\n            \"applicationIdentifier\": \"string\",\r\n            \"applicationReference\": \"string\",\r\n            \"anaVersionNumber\": \"string\",\r\n            \"mhdDocType1\": \"string\",\r\n            \"mhdVersion1\": \"string\",\r\n            \"mhdDocType2\": \"string\",\r\n            \"mhdVersion2\": \"string\",\r\n            \"mhdDocType3\": \"string\",\r\n            \"mhdVersion3\": \"string\",\r\n            \"mhdDocType4\": \"string\",\r\n            \"mhdVersion4\": \"string\",\r\n            \"anaSyntaxId\": \"string\",\r\n            \"customerMappingNotes\": \"string\",\r\n            \"map\": \"string\",\r\n            \"href\": null,\r\n            \"workOrderType\": \"Map - Change\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Creation - Map Change - VDA",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | Map New | {{todayDate}}\",\r\n    \"usersToNotify\": \"user1@example.com;user2@example.com\",\r\n    \"requestNotes\": \"string\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"map change - VDA\",\r\n            \"workOrderPriority\": 1,\r\n            \"standardType\": \"VDA\",\r\n            \"documentDirection\": \"inbound\",\r\n            \"applicationIdentifier\": \"string\",\r\n            \"documentType\": \"string\",\r\n            \"companyCode\": \"string\",\r\n            \"companyName\": \"string\",\r\n            \"customerMappingNotes\": \"string\",\r\n            \"map\": \"string\",\r\n            \"href\": null,\r\n            \"workOrderType\": \"Map - Change\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Creation - Map Change - OTHER",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | Map New | {{todayDate}}\",\r\n    \"usersToNotify\": \"user1@example.com;user2@example.com\",\r\n    \"requestNotes\": \"string\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"map change - other\",\r\n            \"workOrderPriority\": 1,\r\n            \"standardType\": \"OTHER\",\r\n            \"documentDirection\": \"inbound\",\r\n            \"documentType\": \"string\",\r\n            \"applicationIdentifier\": \"string\",\r\n            \"customerMappingNotes\": \"string\",\r\n            \"map\": \"string\",\r\n            \"href\": null,\r\n            \"workOrderType\": \"Map - Change\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "TP Connection New",
+					"item": [
+						{
+							"name": "Request Creation - TP Connection New",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | TP Connection New | {{todayDate}}\",\r\n    \"usersToNotify\": \"user1@example.com;user2@example.com\",\r\n    \"requestNotes\": \"string\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"TP Connection new\",\r\n            \"workOrderType\": \"TP Connection - New\",\r\n            \"workOrderPriority\": 1,\r\n            \"connectivityType\": \"AS2\",\r\n            \"notes\": \"string\"\r\n        },\r\n        {\r\n            \"workOrderTitle\": \"TP Connection new - AS2\",\r\n            \"workOrderType\": \"TP Connection - New\",\r\n            \"workOrderPriority\": 1,\r\n            \"connectivityType\": \"AS2\",\r\n            \"notes\": \"string\",\r\n            \"prodAS2Id\": \"testprodAS2Id\",\r\n            \"prodAS2Url\": \"testprodAS2Url\",\r\n            \"testAS2Id\": \"testtestAS2Id\",\r\n            \"testAS2Url\": \"testtestAS2Url\"\r\n        },\r\n        {\r\n            \"workOrderTitle\": \"TP Connection new - SFTP\",\r\n            \"workOrderType\": \"TP Connection - New\",\r\n            \"workOrderPriority\": 1,\r\n            \"connectivityType\": \"SFTP\",\r\n            \"notes\": \"string\",\r\n            \"hostingBy\": \"NOT_SURE\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "TP Connection Change",
+					"item": [
+						{
+							"name": "Request Creation - TP Connection Change",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | TP Connection Change | {{todayDate}}\",\r\n    \"usersToNotify\": \"user1@example.com;user2@example.com\",\r\n    \"requestNotes\": \"string\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"TP Connection Change\",\r\n            \"workOrderType\": \"TP Connection - Change\",\r\n            \"workOrderPriority\": 1,\r\n            \"connectivityType\": \"AS2\",\r\n            \"notes\": \"string\",\r\n            \"href\": \"String\"\r\n        },\r\n        {\r\n            \"workOrderTitle\": \"TP Connection Change - AS2\",\r\n            \"workOrderType\": \"TP Connection - Change\",\r\n            \"workOrderPriority\": 1,\r\n            \"connectivityType\": \"AS2\",\r\n            \"notes\": \"string\",\r\n            \"href\": \"String\",\r\n            \"prodAS2Id\": \"testprodAS2Id\",\r\n            \"prodAS2Url\": \"testprodAS2Url\",\r\n            \"testAS2Id\": \"testtestAS2Id\",\r\n            \"testAS2Url\": \"testtestAS2Url\"\r\n        },\r\n        {\r\n            \"workOrderTitle\": \"TP Connection Change - SFTP\",\r\n            \"workOrderType\": \"TP Connection - Change\",\r\n            \"workOrderPriority\": 1,\r\n            \"connectivityType\": \"SFTP\",\r\n            \"notes\": \"string\",\r\n            \"href\": \"String\",\r\n            \"hostingBy\": \"NOT_SURE\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Other WO Type",
+					"item": [
+						{
+							"name": "Request Creation - OTHER",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-ottg-caller-application",
+										"value": "Test",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-caller-application-timestamp",
+										"value": "2020-01-01 23:00:00",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-caller-application-host",
+										"value": "test",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-principal-orgid",
+										"value": "GC131160948141",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-principal-userid",
+										"value": "GCP131073585873",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-principal-authid",
+										"value": "TGCPUserAdmin3@ot.com",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "accessToken",
+										"value": "TLTwDY04AmgVWXOegVvSGJd78zpu",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | OTHER | {{todayDate}}\",\r\n    \"usersToNotify\": \"lmd@opentext.com;indreshg@opentext.com\",\r\n    \"requestNotes\": \"External API Testing - Other WO Type\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"HC API | YOURCO | Other | {{todayDate}}\",\r\n            \"workOrderType\": \"Other\",\r\n            \"workOrderPriority\": 3,\r\n            \"workOrderCategory\": \"BULK_TP_SETUP\",\r\n            \"notes\": \"External API - Testing in QA - Other WO Type\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PS Map WO Type",
+					"item": [
+						{
+							"name": "Request Creation - PS Map - ANSI_X12",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-ottg-caller-application",
+										"value": "Test",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-caller-application-timestamp",
+										"value": "2020-01-01 23:00:00",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-caller-application-host",
+										"value": "test",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-principal-orgid",
+										"value": "GC131160948141",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-principal-userid",
+										"value": "GCP131073585873",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-principal-authid",
+										"value": "TGCPUserAdmin3@ot.com",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "accessToken",
+										"value": "TLTwDY04AmgVWXOegVvSGJd78zpu",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"External API | Likhithesh | PS_Map ANSI_X12 | {{todayDate}}\",\r\n    \"usersToNotify\": \"lmd@opentext.com;indreshg@opentext.com\",\r\n    \"requestNotes\": \"External API Testing - Other WO Type\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"HC API | PS Map New WO - ANSI | {{todayDate}}\",\r\n            \"mapName\": \"PS Map New ANSI_X12 - Map Name Mandatory\",\r\n            \"tradingPartnerName\": \"PSMapNew_ANSI_TPNameField\",\r\n            \"mapTranslator\": \"TGXX_AI\",\r\n            \"associatedBaseMap\": \"Associated Base Map Field on ANSI .. 123\",\r\n            \"migRequired\":true,\r\n            \"correlationRequired\":true,\r\n            \"workOrderType\": \"PS Map - New\",\r\n            \"workOrderPriority\": 4,\r\n            \"standardType\": \"ANSI_X12\",\r\n            \"documentDirection\": \"INBOUND\",\r\n            \"documentType\": \"Map - Test Doc Type ANSI Mandatory\",\r\n            \"documentVersion\": \"ANSI Test Doc Version 2 Mandatory\",\r\n            \"applicationIdentifier\": \"ANSI applicationIdentifier1234\",\r\n            \"customerMappingNotes\": \"ANSI customerMappingNotes1234\",\r\n            \"existingMapToClone\": \r\n                        {\r\n                            \"documentType\": \"Test Doc Type - ANSI\",\r\n                            \"map\": \"TestMap - ANSI\",\r\n                            \"direction\": \"INBOUND\"\r\n                        }\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Creation - PS Map - EDIFACT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-ottg-caller-application",
+										"value": "Test",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-caller-application-timestamp",
+										"value": "2020-01-01 23:00:00",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-caller-application-host",
+										"value": "test",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-principal-orgid",
+										"value": "GC131160948141",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-principal-userid",
+										"value": "GCP131073585873",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-principal-authid",
+										"value": "TGCPUserAdmin3@ot.com",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "accessToken",
+										"value": "TLTwDY04AmgVWXOegVvSGJd78zpu",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"External API | Likhithesh | PS_Map EDIFACT | {{todayDate}}\",\r\n    \"usersToNotify\": \"lmd@opentext.com;indreshg@opentext.com\",\r\n    \"requestNotes\": \"External API Testing - Other WO Type\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"HC API | PS Map New WO - EDIFACT | {{todayDate}}\",\r\n            \"mapName\": \"PS Map New EDIFACT - Map Name Mandatory\",\r\n            \"tradingPartnerName\": \"PSMapNew_EDIFACT_TPNameField\",\r\n            \"mapTranslator\": \"ICC\",\r\n            \"associatedBaseMap\": \"Associated Base Map Field on Edifact .. 123\",\r\n            \"migRequired\":true,\r\n            \"correlationRequired\":false,\r\n            \"workOrderType\": \"PS Map - New\",\r\n            \"workOrderPriority\": 3,\r\n            \"standardType\": \"EDIFACT\",\r\n            \"documentDirection\": \"INBOUND\",\r\n            \"documentType\": \"Map - Test Doc Type Edifact Mandatory\",\r\n            \"documentVersion\": \"Edifact Doc Version 2 Mandatory\",\r\n            \"documentRelease\": \"Edifact documentRelease 1234\",\r\n            \"communicationAgreementId\": \"Edifact communicationAgreementId 1234\",\r\n            \"controllingAgency\": \"Edifact controllingAgency 123 _Mandatory\",\r\n            \"associationAssignedCode\": \"Edifact associationAssignedCode 1234_Mandatory\",\r\n            \"applicationIdentifier\": \"Edifact applicationIdentifier56\",\r\n            \"applicationReference\": \"Edifact applicationReference 1234\",\r\n            \"customerMappingNotes\": \"Edifact customerMappingNotes567\",\r\n            \"existingMapToClone\": \r\n                        {\r\n                            \"documentType\": \"Test Doc Type-Edifact\",\r\n                            \"map\": \"TestMap - Edifact\",\r\n                            \"direction\": \"INBOUND\"\r\n                        }\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Creation - PS Map - TRADACOMS",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-ottg-caller-application",
+										"value": "Test",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-caller-application-timestamp",
+										"value": "2020-01-01 23:00:00",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-caller-application-host",
+										"value": "test",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-principal-orgid",
+										"value": "GC131160948141",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-principal-userid",
+										"value": "GCP131073585873",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-principal-authid",
+										"value": "TGCPUserAdmin3@ot.com",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "accessToken",
+										"value": "TLTwDY04AmgVWXOegVvSGJd78zpu",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"External API | Likhithesh | PS_Map TRADACOMS | {{todayDate}}\",\r\n    \"usersToNotify\": \"lmd@opentext.com;indreshg@opentext.com\",\r\n    \"requestNotes\": \"External API Testing - Other WO Type\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"HC API | PS Map New WO - TRADACOMS | {{todayDate}}\",\r\n            \"mapName\": \"PS Map New TRADACOMS - Map Name Mandatory\",\r\n            \"tradingPartnerName\": \"PSMapNew_TRADACOMS_TPNameField\",\r\n            \"mapTranslator\": \"CLASSIC_MS_PROCESS\",\r\n            \"associatedBaseMap\": \"Associated Base Map Field on TRADACOMS .. 123\",\r\n            \"migRequired\":false,\r\n            \"correlationRequired\":true,\r\n            \"workOrderType\": \"PS Map - New\",\r\n            \"workOrderPriority\": 1,\r\n            \"standardType\": \"TRADACOMS\",\r\n            \"documentDirection\": \"OUTBOUND\",\r\n            \"anaVersionNumber\": \"TRADACOMS anaVersionNumber 123\",\r\n            \"mhdDocType1\": \"TRADACOMS mhdDocType1 123\",\r\n            \"mhdVersion1\": \"TRADACMOS mhdVersion1 123\",\r\n            \"mhdDocType2\": \"TRADACOMS mhdDocType2 123\",\r\n            \"mhdVersion2\": \"TRADACOMS mhdVersion2 123\",\r\n            \"mhdDocType3\": \"TRADACOMS mhdDocType3 123\",\r\n            \"mhdVersion3\": \"TRADACOMS mhdVersion3 123\",\r\n            \"mhdDocType4\": \"TRADACOMS mhdDocType4 123\",\r\n            \"mhdVersion4\": \"TRADACOMS mhdVersion4 123\",\r\n            \"applicationIdentifier\": \"TRADACOMS applicationIdentifier56\",\r\n            \"applicationReference\": \"TRADACOMS applicationReference 1234\",\r\n            \"anaSyntaxId\": \"TRADACOMS anaSyntaxId 123\",\r\n            \"customerMappingNotes\": \"customerMappingNotes567\",\r\n            \"existingMapToClone\": \r\n                        {\r\n                            \"documentType\": \"Test Doc Type-TRADACOMS\",\r\n                            \"map\": \"TestMap - TRADACOMS\",\r\n                            \"direction\": \"OUTBOUND\"\r\n                        }\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Creation - PS Map - VDA",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-ottg-caller-application",
+										"value": "Test",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-caller-application-timestamp",
+										"value": "2020-01-01 23:00:00",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-caller-application-host",
+										"value": "test",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-principal-orgid",
+										"value": "GC131160948141",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-principal-userid",
+										"value": "GCP131073585873",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-principal-authid",
+										"value": "TGCPUserAdmin3@ot.com",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "accessToken",
+										"value": "TLTwDY04AmgVWXOegVvSGJd78zpu",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"External API | Likhithesh | PS_Map VDA | {{todayDate}}\",\r\n    \"usersToNotify\": \"lmd@opentext.com;indreshg@opentext.com\",\r\n    \"requestNotes\": \"External API Testing - Other WO Type\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"HC API | PS Map New WO - VDA | {{todayDate}}\",\r\n            \"mapName\": \"PS Map New VDA - Map Name Mandatory\",\r\n            \"tradingPartnerName\": \"PSMapNew_VDA_TPNameField\",\r\n            \"mapTranslator\": \"CLASSIC_NO_MS_PROCESS\",\r\n            \"associatedBaseMap\": \"Associated Base Map Field on VDA .. 123\",\r\n            \"migRequired\":true,\r\n            \"correlationRequired\":true,\r\n            \"workOrderType\": \"PS Map - New\",\r\n            \"workOrderPriority\": 2,\r\n            \"standardType\": \"VDA\",\r\n            \"documentDirection\": \"INBOUND\",\r\n            \"documentType\": \"VDA Map - Test Doc Type Mandatory\",\r\n            \"companyCode\": \"VDA companyCode 213\",\r\n            \"companyName\": \"VDA companyName 123\",\r\n            \"applicationIdentifier\": \"VDA applicationIdentifier1234\",\r\n            \"customerMappingNotes\": \"VDA customerMappingNotes1234\",\r\n            \"existingMapToClone\": \r\n                        {\r\n                            \"documentType\": \"Test Doc Type-VDA\",\r\n                            \"map\": \"TestMap - VDA\",\r\n                            \"direction\": \"OUTBOUND\"\r\n                        }\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Creation - PS Map - OTHER",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonToken = JSON.parse(responseBody);\r",
+											"pm.environment.set(\"statusId\", jsonToken.statusId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-ottg-caller-application",
+										"value": "Test",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-caller-application-timestamp",
+										"value": "2020-01-01 23:00:00",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-caller-application-host",
+										"value": "test",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-principal-orgid",
+										"value": "GC131160948141",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-principal-userid",
+										"value": "GCP131073585873",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-ottg-principal-authid",
+										"value": "TGCPUserAdmin3@ot.com",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "accessToken",
+										"value": "TLTwDY04AmgVWXOegVvSGJd78zpu",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"requestTitle\": \"External API | Likhithesh | PS_Map OTHER | {{todayDate}}\",\r\n    \"usersToNotify\": \"lmd@opentext.com;indreshg@opentext.com\",\r\n    \"requestNotes\": \"External API Testing - Other WO Type\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"HC API | PS Map New WO - OTHER | {{todayDate}}\",\r\n            \"mapName\": \"PS Map New OTHER - Map Name Mandatory\",\r\n            \"tradingPartnerName\": \"PSMapNew_OTHER_TPNameField\",\r\n            \"mapTranslator\": \"CANONICAL_MAP\",\r\n            \"associatedBaseMap\": \"Associated Base Map Field on OTHER .. 123\",\r\n            \"migRequired\":false,\r\n            \"correlationRequired\":true,\r\n            \"workOrderType\": \"PS Map - New\",\r\n            \"workOrderPriority\": 4,\r\n            \"standardType\": \"OTHER\",\r\n            \"documentDirection\": \"INBOUND\",\r\n            \"documentType\": \"OTHER Map - Test Doc Type Mandatory\",\r\n            \"applicationIdentifier\": \"OTHER applicationIdentifier1234\",\r\n            \"customerMappingNotes\": \"OTHER customerMappingNotes1234\",\r\n            \"existingMapToClone\": \r\n                        {\r\n                            \"documentType\": \"Test Doc Type-OTHER\",\r\n                            \"map\": \"TestMap - OTHER\",\r\n                            \"direction\": \"OUTBOUND\"\r\n                        }\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/TGCP/v1/work-order-requests",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"TGCP",
+										"v1",
+										"work-order-requests"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get WorkOrder ID and Request Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonToken = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"workOrderId\", jsonToken[0].workOrderId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-ottg-caller-application",
+								"value": "NEO / Mapping Portal",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-ottg-caller-application-timestamp",
+								"value": "2020-01-01 23:00:00",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-ottg-caller-application-host",
+								"value": "lit-vacp-q019.qa.gxsonline.net",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-ottg-principal-orgid",
+								"value": "GC131160948141",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-ottg-principal-userid",
+								"value": "GCP131073585873",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-ottg-principal-authid",
+								"value": "TGCPUserAdmin3@ot.com",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{api_host}}/TGCP/v1/work-order-requests/status/{{statusId}}",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"TGCP",
+								"v1",
+								"work-order-requests",
+								"status",
+								"{{statusId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get WorkOrder Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-ottg-caller-application",
+								"value": "NEO / Mapping Portal",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-ottg-caller-application-timestamp",
+								"value": "2020-01-01 23:00:00",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-ottg-caller-application-host",
+								"value": "lit-vacp-q019.qa.gxsonline.net",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-ottg-principal-orgid",
+								"value": "GC131160948141",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-ottg-principal-userid",
+								"value": "GCP131073585873",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-ottg-principal-authid",
+								"value": "TGCPUserAdmin3@ot.com",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{api_host}}/TGCP/v1/work-orders/status?workOrderId={{workOrderId}}",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"TGCP",
+								"v1",
+								"work-orders",
+								"status"
+							],
+							"query": [
+								{
+									"key": "workOrderId",
+									"value": "{{workOrderId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "External API - QA_File Upload",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-ottg-caller-application",
+								"value": "Test",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-ottg-caller-application-timestamp",
+								"value": "2020-01-01 23:00:00",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-ottg-caller-application-host",
+								"value": "test",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-ottg-principal-orgid",
+								"value": "GC131160948141",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-ottg-principal-userid",
+								"value": "GCP131073585873",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-ottg-principal-authid",
+								"value": "TGCPUserAdmin3@ot.com",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "accessToken",
+								"value": "TLTwDY04AmgVWXOegVvSGJd78zpu",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "workOrderId",
+									"value": "{{workOrderId}}",
+									"type": "text"
+								},
+								{
+									"key": "files",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api_host}}/TGCP/v1/work-orders/files",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"TGCP",
+								"v1",
+								"work-orders",
+								"files"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
