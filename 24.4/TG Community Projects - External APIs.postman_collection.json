@@ -2,7 +2,6 @@
 	"info": {
 		"_postman_id": "1bfc980b-6ada-45ec-9318-057c950a38c6",
 		"name": "TG Community Projects - External APIs",
-		"description": "TG Community Projects Product Description - https://confluence.opentext.com/display/BNTGCP/24.4+-+API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
