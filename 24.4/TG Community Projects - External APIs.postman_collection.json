@@ -1,7 +1,8 @@
 {
 	"info": {
 		"_postman_id": "1bfc980b-6ada-45ec-9318-057c950a38c6",
-		"name": "Trading Grid Community Projects - External APIs",
+		"name": "TG Community Projects - External APIs",
+		"description": "TG Community Projects Product Description - https://confluence.opentext.com/display/BNTGCP/24.4+-+API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -56,11 +57,13 @@
 									"value": "client_credentials"
 								}
 							]
-						}
+						},
+						"description": "Get access token by providing consumer APIGEE key and secret."
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Get access token by providing consumer APIGEE key and secret."
 		},
 		{
 			"name": "TGCP External APIs",
@@ -114,7 +117,8 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'Trading Partner - New' and EDI Standard 'ANSI X12'."
 							},
 							"response": []
 						},
@@ -164,7 +168,8 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'Trading Partner - New' and EDI Standard 'EDIFACT'."
 							},
 							"response": []
 						},
@@ -214,7 +219,8 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'Trading Partner - New' and EDI Standard 'TRADACOMS'."
 							},
 							"response": []
 						},
@@ -264,7 +270,8 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'Trading Partner - New' and EDI Standard 'VDA'."
 							},
 							"response": []
 						},
@@ -314,11 +321,13 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'Trading Partner - New' and EDI Standard 'UDF/OTHER'."
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "This API can be used to create a request and work orders of Type 'Trading Partner - New'"
 				},
 				{
 					"name": "Trading Partner Change",
@@ -369,7 +378,8 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'Trading Partner - Change' and EDI Standard 'ANSI X12'."
 							},
 							"response": []
 						},
@@ -419,7 +429,8 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'Trading Partner - Change' and EDI Standard 'EDIFACT'."
 							},
 							"response": []
 						},
@@ -469,7 +480,8 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'Trading Partner - Change' and EDI Standard 'TRADACOMS'."
 							},
 							"response": []
 						},
@@ -519,7 +531,8 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'Trading Partner - Change' and EDI Standard 'VDA'."
 							},
 							"response": []
 						},
@@ -569,11 +582,13 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'Trading Partner - Change' and EDI Standard 'UDF/OTHER'."
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "This API can be used to create a request and work orders of Type 'Trading Partner - Change'"
 				},
 				{
 					"name": "Map New",
@@ -624,7 +639,8 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'Map - New' and EDI Standard 'ANSI X12'."
 							},
 							"response": []
 						},
@@ -674,7 +690,8 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'Map - New' and EDI Standard 'EDIFACT'."
 							},
 							"response": []
 						},
@@ -724,7 +741,8 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'Map - New' and EDI Standard 'TRADACOMS'."
 							},
 							"response": []
 						},
@@ -774,7 +792,8 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'Map - New' and EDI Standard 'VDA'."
 							},
 							"response": []
 						},
@@ -824,11 +843,13 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'Map - New' and EDI Standard 'UDF/OTHER'."
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "This API can be used to create a request and work orders of Type 'Map- New'"
 				},
 				{
 					"name": "Map Change",
@@ -879,7 +900,8 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'Map - Change' and EDI Standard 'ANSI X12'."
 							},
 							"response": []
 						},
@@ -929,7 +951,8 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'Map - Change' and EDI Standard 'EDIFACT'."
 							},
 							"response": []
 						},
@@ -979,7 +1002,8 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'Map - Change' and EDI Standard 'TRADACOMS'."
 							},
 							"response": []
 						},
@@ -1029,12 +1053,13 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'Map - Change' and EDI Standard 'VDA'."
 							},
 							"response": []
 						},
 						{
-							"name": "Request Creation - Map Change - OTHER",
+							"name": "Request Creation - Map Change - UDF/OTHER",
 							"event": [
 								{
 									"listen": "test",
@@ -1079,11 +1104,13 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'Map - Change' and EDI Standard 'UDF/OTHER'."
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "This API can be used to create a request and work orders of Type 'Map- Change'"
 				},
 				{
 					"name": "TP Connection New",
@@ -1134,11 +1161,13 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'TP Connection- New'"
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "This API can be used to create a request and work orders of Type 'TP Connection- New'"
 				},
 				{
 					"name": "TP Connection Change",
@@ -1189,11 +1218,13 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'TP Connection- Change'"
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "This API can be used to create a request and work orders of Type 'TP Connection- Change'"
 				},
 				{
 					"name": "Other WO Type",
@@ -1224,53 +1255,10 @@
 									]
 								},
 								"method": "POST",
-								"header": [
-									{
-										"key": "x-ottg-caller-application",
-										"value": "Test",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-caller-application-timestamp",
-										"value": "2020-01-01 23:00:00",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-caller-application-host",
-										"value": "test",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-principal-orgid",
-										"value": "GC131160948141",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-principal-userid",
-										"value": "GCP131073585873",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-principal-authid",
-										"value": "TGCPUserAdmin3@ot.com",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "accessToken",
-										"value": "TLTwDY04AmgVWXOegVvSGJd78zpu",
-										"type": "text",
-										"disabled": true
-									}
-								],
+								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"requestTitle\": \"Test External API | OTHER | {{todayDate}}\",\r\n    \"usersToNotify\": \"lmd@opentext.com;indreshg@opentext.com\",\r\n    \"requestNotes\": \"External API Testing - Other WO Type\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"HC API | YOURCO | Other | {{todayDate}}\",\r\n            \"workOrderType\": \"Other\",\r\n            \"workOrderPriority\": 3,\r\n            \"workOrderCategory\": \"BULK_TP_SETUP\",\r\n            \"notes\": \"External API - Testing in QA - Other WO Type\"\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"requestTitle\": \"Test External API | OTHER | {{todayDate}}\",\r\n    \"usersToNotify\": \"test@test.test;test1@test1.test\",\r\n    \"requestNotes\": \"External API Testing - Other WO Type\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"Test External API | Other | {{todayDate}}\",\r\n            \"workOrderType\": \"Other\",\r\n            \"workOrderPriority\": 3,\r\n            \"workOrderCategory\": \"BULK_TP_SETUP\",\r\n            \"notes\": \"Testing External API - Other WO Type\"\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1287,11 +1275,13 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'Other'"
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "This API can be used to create a request and work orders of Type 'Other'"
 				},
 				{
 					"name": "PS Map WO Type",
@@ -1322,53 +1312,10 @@
 									]
 								},
 								"method": "POST",
-								"header": [
-									{
-										"key": "x-ottg-caller-application",
-										"value": "Test",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-caller-application-timestamp",
-										"value": "2020-01-01 23:00:00",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-caller-application-host",
-										"value": "test",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-principal-orgid",
-										"value": "GC131160948141",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-principal-userid",
-										"value": "GCP131073585873",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-principal-authid",
-										"value": "TGCPUserAdmin3@ot.com",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "accessToken",
-										"value": "TLTwDY04AmgVWXOegVvSGJd78zpu",
-										"type": "text",
-										"disabled": true
-									}
-								],
+								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"requestTitle\": \"External API | Likhithesh | PS_Map ANSI_X12 | {{todayDate}}\",\r\n    \"usersToNotify\": \"lmd@opentext.com;indreshg@opentext.com\",\r\n    \"requestNotes\": \"External API Testing - Other WO Type\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"HC API | PS Map New WO - ANSI | {{todayDate}}\",\r\n            \"mapName\": \"PS Map New ANSI_X12 - Map Name Mandatory\",\r\n            \"tradingPartnerName\": \"PSMapNew_ANSI_TPNameField\",\r\n            \"mapTranslator\": \"TGXX_AI\",\r\n            \"associatedBaseMap\": \"Associated Base Map Field on ANSI .. 123\",\r\n            \"migRequired\":true,\r\n            \"correlationRequired\":true,\r\n            \"workOrderType\": \"PS Map - New\",\r\n            \"workOrderPriority\": 4,\r\n            \"standardType\": \"ANSI_X12\",\r\n            \"documentDirection\": \"INBOUND\",\r\n            \"documentType\": \"Map - Test Doc Type ANSI Mandatory\",\r\n            \"documentVersion\": \"ANSI Test Doc Version 2 Mandatory\",\r\n            \"applicationIdentifier\": \"ANSI applicationIdentifier1234\",\r\n            \"customerMappingNotes\": \"ANSI customerMappingNotes1234\",\r\n            \"existingMapToClone\": \r\n                        {\r\n                            \"documentType\": \"Test Doc Type - ANSI\",\r\n                            \"map\": \"TestMap - ANSI\",\r\n                            \"direction\": \"INBOUND\"\r\n                        }\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"requestTitle\": \"External API | PS_Map ANSIX12 | {{todayDate}}\",\r\n    \"usersToNotify\": \"test@test.com;test1@test1.com\",\r\n    \"requestNotes\": \"External API Testing - PS Map WO Type\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"HC API | PS Map New WO - ANSIX12 | {{todayDate}}\",\r\n            \"mapName\": \"PS Map New EDIFACT - Map Name Mandatory\",\r\n            \"tradingPartnerName\": \"PSMapNew_EDIFACT_TPNameField\",\r\n            \"mapTranslator\": \"ICC\",\r\n            \"associatedBaseMap\": \"Associated Base Map Field on Edifact .. 123\",\r\n            \"migRequired\":true,\r\n            \"correlationRequired\":false,\r\n            \"workOrderType\": \"PS Map - New\",\r\n            \"workOrderPriority\": 3,\r\n            \"standardType\": \"EDIFACT\",\r\n            \"documentDirection\": \"INBOUND\",\r\n            \"documentType\": \"Map - Test Doc Type Edifact Mandatory\",\r\n            \"documentVersion\": \"Edifact Doc Version 2 Mandatory\",\r\n            \"documentRelease\": \"Edifact documentRelease 1234\",\r\n            \"communicationAgreementId\": \"Edifact communicationAgreementId 1234\",\r\n            \"controllingAgency\": \"Edifact controllingAgency 123 _Mandatory\",\r\n            \"associationAssignedCode\": \"Edifact associationAssignedCode 1234_Mandatory\",\r\n            \"applicationIdentifier\": \"Edifact applicationIdentifier56\",\r\n            \"applicationReference\": \"Edifact applicationReference 1234\",\r\n            \"customerMappingNotes\": \"Edifact customerMappingNotes567\",\r\n            \"existingMapToClone\": \r\n                        {\r\n                            \"documentType\": \"Test Doc Type-Edifact\",\r\n                            \"map\": \"TestMap - Edifact\",\r\n                            \"direction\": \"INBOUND\"\r\n                        }\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1385,7 +1332,8 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'PS Map' and EDI Standard 'ANSI X12'."
 							},
 							"response": []
 						},
@@ -1415,53 +1363,10 @@
 									]
 								},
 								"method": "POST",
-								"header": [
-									{
-										"key": "x-ottg-caller-application",
-										"value": "Test",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-caller-application-timestamp",
-										"value": "2020-01-01 23:00:00",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-caller-application-host",
-										"value": "test",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-principal-orgid",
-										"value": "GC131160948141",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-principal-userid",
-										"value": "GCP131073585873",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-principal-authid",
-										"value": "TGCPUserAdmin3@ot.com",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "accessToken",
-										"value": "TLTwDY04AmgVWXOegVvSGJd78zpu",
-										"type": "text",
-										"disabled": true
-									}
-								],
+								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"requestTitle\": \"External API | Likhithesh | PS_Map EDIFACT | {{todayDate}}\",\r\n    \"usersToNotify\": \"lmd@opentext.com;indreshg@opentext.com\",\r\n    \"requestNotes\": \"External API Testing - Other WO Type\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"HC API | PS Map New WO - EDIFACT | {{todayDate}}\",\r\n            \"mapName\": \"PS Map New EDIFACT - Map Name Mandatory\",\r\n            \"tradingPartnerName\": \"PSMapNew_EDIFACT_TPNameField\",\r\n            \"mapTranslator\": \"ICC\",\r\n            \"associatedBaseMap\": \"Associated Base Map Field on Edifact .. 123\",\r\n            \"migRequired\":true,\r\n            \"correlationRequired\":false,\r\n            \"workOrderType\": \"PS Map - New\",\r\n            \"workOrderPriority\": 3,\r\n            \"standardType\": \"EDIFACT\",\r\n            \"documentDirection\": \"INBOUND\",\r\n            \"documentType\": \"Map - Test Doc Type Edifact Mandatory\",\r\n            \"documentVersion\": \"Edifact Doc Version 2 Mandatory\",\r\n            \"documentRelease\": \"Edifact documentRelease 1234\",\r\n            \"communicationAgreementId\": \"Edifact communicationAgreementId 1234\",\r\n            \"controllingAgency\": \"Edifact controllingAgency 123 _Mandatory\",\r\n            \"associationAssignedCode\": \"Edifact associationAssignedCode 1234_Mandatory\",\r\n            \"applicationIdentifier\": \"Edifact applicationIdentifier56\",\r\n            \"applicationReference\": \"Edifact applicationReference 1234\",\r\n            \"customerMappingNotes\": \"Edifact customerMappingNotes567\",\r\n            \"existingMapToClone\": \r\n                        {\r\n                            \"documentType\": \"Test Doc Type-Edifact\",\r\n                            \"map\": \"TestMap - Edifact\",\r\n                            \"direction\": \"INBOUND\"\r\n                        }\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"requestTitle\": \"External API | PS_Map EDIFACT | {{todayDate}}\",\r\n    \"usersToNotify\": \"test@test.com;test1@test1.com\",\r\n    \"requestNotes\": \"External API Testing - PS Map WO Type\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"HC API | PS Map New WO - EDIFACT | {{todayDate}}\",\r\n            \"mapName\": \"PS Map New EDIFACT - Map Name Mandatory\",\r\n            \"tradingPartnerName\": \"PSMapNew_EDIFACT_TPNameField\",\r\n            \"mapTranslator\": \"ICC\",\r\n            \"associatedBaseMap\": \"Associated Base Map Field on Edifact .. 123\",\r\n            \"migRequired\":true,\r\n            \"correlationRequired\":false,\r\n            \"workOrderType\": \"PS Map - New\",\r\n            \"workOrderPriority\": 3,\r\n            \"standardType\": \"EDIFACT\",\r\n            \"documentDirection\": \"INBOUND\",\r\n            \"documentType\": \"Map - Test Doc Type Edifact Mandatory\",\r\n            \"documentVersion\": \"Edifact Doc Version 2 Mandatory\",\r\n            \"documentRelease\": \"Edifact documentRelease 1234\",\r\n            \"communicationAgreementId\": \"Edifact communicationAgreementId 1234\",\r\n            \"controllingAgency\": \"Edifact controllingAgency 123 _Mandatory\",\r\n            \"associationAssignedCode\": \"Edifact associationAssignedCode 1234_Mandatory\",\r\n            \"applicationIdentifier\": \"Edifact applicationIdentifier56\",\r\n            \"applicationReference\": \"Edifact applicationReference 1234\",\r\n            \"customerMappingNotes\": \"Edifact customerMappingNotes567\",\r\n            \"existingMapToClone\": \r\n                        {\r\n                            \"documentType\": \"Test Doc Type-Edifact\",\r\n                            \"map\": \"TestMap - Edifact\",\r\n                            \"direction\": \"INBOUND\"\r\n                        }\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1478,7 +1383,8 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'PS Map' and EDI Standard 'EDIFACT'."
 							},
 							"response": []
 						},
@@ -1508,53 +1414,10 @@
 									]
 								},
 								"method": "POST",
-								"header": [
-									{
-										"key": "x-ottg-caller-application",
-										"value": "Test",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-caller-application-timestamp",
-										"value": "2020-01-01 23:00:00",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-caller-application-host",
-										"value": "test",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-principal-orgid",
-										"value": "GC131160948141",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-principal-userid",
-										"value": "GCP131073585873",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-principal-authid",
-										"value": "TGCPUserAdmin3@ot.com",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "accessToken",
-										"value": "TLTwDY04AmgVWXOegVvSGJd78zpu",
-										"type": "text",
-										"disabled": true
-									}
-								],
+								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"requestTitle\": \"External API | Likhithesh | PS_Map TRADACOMS | {{todayDate}}\",\r\n    \"usersToNotify\": \"lmd@opentext.com;indreshg@opentext.com\",\r\n    \"requestNotes\": \"External API Testing - Other WO Type\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"HC API | PS Map New WO - TRADACOMS | {{todayDate}}\",\r\n            \"mapName\": \"PS Map New TRADACOMS - Map Name Mandatory\",\r\n            \"tradingPartnerName\": \"PSMapNew_TRADACOMS_TPNameField\",\r\n            \"mapTranslator\": \"CLASSIC_MS_PROCESS\",\r\n            \"associatedBaseMap\": \"Associated Base Map Field on TRADACOMS .. 123\",\r\n            \"migRequired\":false,\r\n            \"correlationRequired\":true,\r\n            \"workOrderType\": \"PS Map - New\",\r\n            \"workOrderPriority\": 1,\r\n            \"standardType\": \"TRADACOMS\",\r\n            \"documentDirection\": \"OUTBOUND\",\r\n            \"anaVersionNumber\": \"TRADACOMS anaVersionNumber 123\",\r\n            \"mhdDocType1\": \"TRADACOMS mhdDocType1 123\",\r\n            \"mhdVersion1\": \"TRADACMOS mhdVersion1 123\",\r\n            \"mhdDocType2\": \"TRADACOMS mhdDocType2 123\",\r\n            \"mhdVersion2\": \"TRADACOMS mhdVersion2 123\",\r\n            \"mhdDocType3\": \"TRADACOMS mhdDocType3 123\",\r\n            \"mhdVersion3\": \"TRADACOMS mhdVersion3 123\",\r\n            \"mhdDocType4\": \"TRADACOMS mhdDocType4 123\",\r\n            \"mhdVersion4\": \"TRADACOMS mhdVersion4 123\",\r\n            \"applicationIdentifier\": \"TRADACOMS applicationIdentifier56\",\r\n            \"applicationReference\": \"TRADACOMS applicationReference 1234\",\r\n            \"anaSyntaxId\": \"TRADACOMS anaSyntaxId 123\",\r\n            \"customerMappingNotes\": \"customerMappingNotes567\",\r\n            \"existingMapToClone\": \r\n                        {\r\n                            \"documentType\": \"Test Doc Type-TRADACOMS\",\r\n                            \"map\": \"TestMap - TRADACOMS\",\r\n                            \"direction\": \"OUTBOUND\"\r\n                        }\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"requestTitle\": \"External API | PS_Map TRADACOMS | {{todayDate}}\",\r\n    \"usersToNotify\": \"test@test.com;test1@test1.com\",\r\n    \"requestNotes\": \"External API Testing - PS Map WO Type\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"HC API | PS Map New WO - TRADACOMS | {{todayDate}}\",\r\n            \"mapName\": \"PS Map New TRADACOMS - Map Name Mandatory\",\r\n            \"tradingPartnerName\": \"PSMapNew_TRADACOMS_TPNameField\",\r\n            \"mapTranslator\": \"CLASSIC_MS_PROCESS\",\r\n            \"associatedBaseMap\": \"Associated Base Map Field on TRADACOMS .. 123\",\r\n            \"migRequired\":false,\r\n            \"correlationRequired\":true,\r\n            \"workOrderType\": \"PS Map - New\",\r\n            \"workOrderPriority\": 1,\r\n            \"standardType\": \"TRADACOMS\",\r\n            \"documentDirection\": \"OUTBOUND\",\r\n            \"anaVersionNumber\": \"TRADACOMS anaVersionNumber 123\",\r\n            \"mhdDocType1\": \"TRADACOMS mhdDocType1 123\",\r\n            \"mhdVersion1\": \"TRADACMOS mhdVersion1 123\",\r\n            \"mhdDocType2\": \"TRADACOMS mhdDocType2 123\",\r\n            \"mhdVersion2\": \"TRADACOMS mhdVersion2 123\",\r\n            \"mhdDocType3\": \"TRADACOMS mhdDocType3 123\",\r\n            \"mhdVersion3\": \"TRADACOMS mhdVersion3 123\",\r\n            \"mhdDocType4\": \"TRADACOMS mhdDocType4 123\",\r\n            \"mhdVersion4\": \"TRADACOMS mhdVersion4 123\",\r\n            \"applicationIdentifier\": \"TRADACOMS applicationIdentifier56\",\r\n            \"applicationReference\": \"TRADACOMS applicationReference 1234\",\r\n            \"anaSyntaxId\": \"TRADACOMS anaSyntaxId 123\",\r\n            \"customerMappingNotes\": \"customerMappingNotes567\",\r\n            \"existingMapToClone\": \r\n                        {\r\n                            \"documentType\": \"Test Doc Type-TRADACOMS\",\r\n                            \"map\": \"TestMap - TRADACOMS\",\r\n                            \"direction\": \"OUTBOUND\"\r\n                        }\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1571,7 +1434,8 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'PS Map' and EDI Standard 'TRADACOMS'."
 							},
 							"response": []
 						},
@@ -1601,53 +1465,10 @@
 									]
 								},
 								"method": "POST",
-								"header": [
-									{
-										"key": "x-ottg-caller-application",
-										"value": "Test",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-caller-application-timestamp",
-										"value": "2020-01-01 23:00:00",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-caller-application-host",
-										"value": "test",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-principal-orgid",
-										"value": "GC131160948141",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-principal-userid",
-										"value": "GCP131073585873",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-principal-authid",
-										"value": "TGCPUserAdmin3@ot.com",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "accessToken",
-										"value": "TLTwDY04AmgVWXOegVvSGJd78zpu",
-										"type": "text",
-										"disabled": true
-									}
-								],
+								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"requestTitle\": \"External API | Likhithesh | PS_Map VDA | {{todayDate}}\",\r\n    \"usersToNotify\": \"lmd@opentext.com;indreshg@opentext.com\",\r\n    \"requestNotes\": \"External API Testing - Other WO Type\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"HC API | PS Map New WO - VDA | {{todayDate}}\",\r\n            \"mapName\": \"PS Map New VDA - Map Name Mandatory\",\r\n            \"tradingPartnerName\": \"PSMapNew_VDA_TPNameField\",\r\n            \"mapTranslator\": \"CLASSIC_NO_MS_PROCESS\",\r\n            \"associatedBaseMap\": \"Associated Base Map Field on VDA .. 123\",\r\n            \"migRequired\":true,\r\n            \"correlationRequired\":true,\r\n            \"workOrderType\": \"PS Map - New\",\r\n            \"workOrderPriority\": 2,\r\n            \"standardType\": \"VDA\",\r\n            \"documentDirection\": \"INBOUND\",\r\n            \"documentType\": \"VDA Map - Test Doc Type Mandatory\",\r\n            \"companyCode\": \"VDA companyCode 213\",\r\n            \"companyName\": \"VDA companyName 123\",\r\n            \"applicationIdentifier\": \"VDA applicationIdentifier1234\",\r\n            \"customerMappingNotes\": \"VDA customerMappingNotes1234\",\r\n            \"existingMapToClone\": \r\n                        {\r\n                            \"documentType\": \"Test Doc Type-VDA\",\r\n                            \"map\": \"TestMap - VDA\",\r\n                            \"direction\": \"OUTBOUND\"\r\n                        }\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"requestTitle\": \"External API | PS_Map VDA | {{todayDate}}\",\r\n    \"usersToNotify\": \"test@test.com;test1@test1.com\",\r\n    \"requestNotes\": \"External API Testing - PS Map WO Type\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"HC API | PS Map New WO - VDA | {{todayDate}}\",\r\n            \"mapName\": \"PS Map New VDA - Map Name Mandatory\",\r\n            \"tradingPartnerName\": \"PSMapNew_VDA_TPNameField\",\r\n            \"mapTranslator\": \"CLASSIC_NO_MS_PROCESS\",\r\n            \"associatedBaseMap\": \"Associated Base Map Field on VDA .. 123\",\r\n            \"migRequired\":true,\r\n            \"correlationRequired\":true,\r\n            \"workOrderType\": \"PS Map - New\",\r\n            \"workOrderPriority\": 2,\r\n            \"standardType\": \"VDA\",\r\n            \"documentDirection\": \"INBOUND\",\r\n            \"documentType\": \"VDA Map - Test Doc Type Mandatory\",\r\n            \"companyCode\": \"VDA companyCode 213\",\r\n            \"companyName\": \"VDA companyName 123\",\r\n            \"applicationIdentifier\": \"VDA applicationIdentifier1234\",\r\n            \"customerMappingNotes\": \"VDA customerMappingNotes1234\",\r\n            \"existingMapToClone\": \r\n                        {\r\n                            \"documentType\": \"Test Doc Type-VDA\",\r\n                            \"map\": \"TestMap - VDA\",\r\n                            \"direction\": \"OUTBOUND\"\r\n                        }\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1664,12 +1485,13 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'PS Map' and EDI Standard 'VDA'."
 							},
 							"response": []
 						},
 						{
-							"name": "Request Creation - PS Map - OTHER",
+							"name": "Request Creation - PS Map - UDF/OTHER",
 							"event": [
 								{
 									"listen": "test",
@@ -1694,53 +1516,10 @@
 									]
 								},
 								"method": "POST",
-								"header": [
-									{
-										"key": "x-ottg-caller-application",
-										"value": "Test",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-caller-application-timestamp",
-										"value": "2020-01-01 23:00:00",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-caller-application-host",
-										"value": "test",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-principal-orgid",
-										"value": "GC131160948141",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-principal-userid",
-										"value": "GCP131073585873",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "x-ottg-principal-authid",
-										"value": "TGCPUserAdmin3@ot.com",
-										"type": "text",
-										"disabled": true
-									},
-									{
-										"key": "accessToken",
-										"value": "TLTwDY04AmgVWXOegVvSGJd78zpu",
-										"type": "text",
-										"disabled": true
-									}
-								],
+								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"requestTitle\": \"External API | Likhithesh | PS_Map OTHER | {{todayDate}}\",\r\n    \"usersToNotify\": \"lmd@opentext.com;indreshg@opentext.com\",\r\n    \"requestNotes\": \"External API Testing - Other WO Type\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"HC API | PS Map New WO - OTHER | {{todayDate}}\",\r\n            \"mapName\": \"PS Map New OTHER - Map Name Mandatory\",\r\n            \"tradingPartnerName\": \"PSMapNew_OTHER_TPNameField\",\r\n            \"mapTranslator\": \"CANONICAL_MAP\",\r\n            \"associatedBaseMap\": \"Associated Base Map Field on OTHER .. 123\",\r\n            \"migRequired\":false,\r\n            \"correlationRequired\":true,\r\n            \"workOrderType\": \"PS Map - New\",\r\n            \"workOrderPriority\": 4,\r\n            \"standardType\": \"OTHER\",\r\n            \"documentDirection\": \"INBOUND\",\r\n            \"documentType\": \"OTHER Map - Test Doc Type Mandatory\",\r\n            \"applicationIdentifier\": \"OTHER applicationIdentifier1234\",\r\n            \"customerMappingNotes\": \"OTHER customerMappingNotes1234\",\r\n            \"existingMapToClone\": \r\n                        {\r\n                            \"documentType\": \"Test Doc Type-OTHER\",\r\n                            \"map\": \"TestMap - OTHER\",\r\n                            \"direction\": \"OUTBOUND\"\r\n                        }\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"requestTitle\": \"External API | PS_Map OTHER | {{todayDate}}\",\r\n    \"usersToNotify\": \"test@test.com;test1@test1.com\",\r\n    \"requestNotes\": \"External API Testing - PS Map WO Type\",\r\n    \"workOrders\": [\r\n        {\r\n            \"workOrderTitle\": \"HC API | PS Map New WO - OTHER | {{todayDate}}\",\r\n            \"mapName\": \"PS Map New OTHER - Map Name Mandatory\",\r\n            \"tradingPartnerName\": \"PSMapNew_OTHER_TPNameField\",\r\n            \"mapTranslator\": \"CANONICAL_MAP\",\r\n            \"associatedBaseMap\": \"Associated Base Map Field on OTHER .. 123\",\r\n            \"migRequired\":false,\r\n            \"correlationRequired\":true,\r\n            \"workOrderType\": \"PS Map - New\",\r\n            \"workOrderPriority\": 4,\r\n            \"standardType\": \"OTHER\",\r\n            \"documentDirection\": \"INBOUND\",\r\n            \"documentType\": \"OTHER Map - Test Doc Type Mandatory\",\r\n            \"applicationIdentifier\": \"OTHER applicationIdentifier1234\",\r\n            \"customerMappingNotes\": \"OTHER customerMappingNotes1234\",\r\n            \"existingMapToClone\": \r\n                        {\r\n                            \"documentType\": \"Test Doc Type-OTHER\",\r\n                            \"map\": \"TestMap - OTHER\",\r\n                            \"direction\": \"OUTBOUND\"\r\n                        }\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1757,11 +1536,13 @@
 										"v1",
 										"work-order-requests"
 									]
-								}
+								},
+								"description": "This API can be used to create a request and work orders of Type 'PS Map' and EDI Standard 'UDF/OTHER'."
 							},
 							"response": []
 						}
-					]
+					],
+					"description": "This API can be used to create a request and work orders of Type 'PS Map'"
 				},
 				{
 					"name": "Get WorkOrder ID and Request Status",
@@ -1789,44 +1570,7 @@
 							]
 						},
 						"method": "GET",
-						"header": [
-							{
-								"key": "x-ottg-caller-application",
-								"value": "NEO / Mapping Portal",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "x-ottg-caller-application-timestamp",
-								"value": "2020-01-01 23:00:00",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "x-ottg-caller-application-host",
-								"value": "lit-vacp-q019.qa.gxsonline.net",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "x-ottg-principal-orgid",
-								"value": "GC131160948141",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "x-ottg-principal-userid",
-								"value": "GCP131073585873",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "x-ottg-principal-authid",
-								"value": "TGCPUserAdmin3@ot.com",
-								"type": "text",
-								"disabled": true
-							}
-						],
+						"header": [],
 						"url": {
 							"raw": "{{api_host}}/TGCP/v1/work-order-requests/status/{{statusId}}",
 							"host": [
@@ -1839,7 +1583,8 @@
 								"status",
 								"{{statusId}}"
 							]
-						}
+						},
+						"description": "This API can be used to get request status and work order ID by using job ID"
 					},
 					"response": []
 				},
@@ -1871,44 +1616,7 @@
 							]
 						},
 						"method": "GET",
-						"header": [
-							{
-								"key": "x-ottg-caller-application",
-								"value": "NEO / Mapping Portal",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "x-ottg-caller-application-timestamp",
-								"value": "2020-01-01 23:00:00",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "x-ottg-caller-application-host",
-								"value": "lit-vacp-q019.qa.gxsonline.net",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "x-ottg-principal-orgid",
-								"value": "GC131160948141",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "x-ottg-principal-userid",
-								"value": "GCP131073585873",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "x-ottg-principal-authid",
-								"value": "TGCPUserAdmin3@ot.com",
-								"type": "text",
-								"disabled": true
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "formdata",
 							"formdata": []
@@ -1930,7 +1638,8 @@
 									"value": "{{workOrderId}}"
 								}
 							]
-						}
+						},
+						"description": "This API can be used to get work order status by using work order id"
 					},
 					"response": []
 				},
@@ -1959,50 +1668,7 @@
 							]
 						},
 						"method": "POST",
-						"header": [
-							{
-								"key": "x-ottg-caller-application",
-								"value": "Test",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "x-ottg-caller-application-timestamp",
-								"value": "2020-01-01 23:00:00",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "x-ottg-caller-application-host",
-								"value": "test",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "x-ottg-principal-orgid",
-								"value": "GC131160948141",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "x-ottg-principal-userid",
-								"value": "GCP131073585873",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "x-ottg-principal-authid",
-								"value": "TGCPUserAdmin3@ot.com",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "accessToken",
-								"value": "TLTwDY04AmgVWXOegVvSGJd78zpu",
-								"type": "text",
-								"disabled": true
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "formdata",
 							"formdata": [
@@ -2029,7 +1695,8 @@
 								"work-orders",
 								"files"
 							]
-						}
+						},
+						"description": "This API can be used to upload a file to work order by using work order id"
 					},
 					"response": []
 				}
